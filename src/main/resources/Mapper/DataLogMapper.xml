@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 管理data_log数据库 -->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rewrite.selfexamsystem.mapper.DataLogMapper">
+    <!-- 添加记录到data_log中 -->
+    <insert id="addDataLog" parameterType="com.rewrite.selfexamsystem.domain.DataLog">
+        insert into data_log(time, ip, username, thing, type, status)
+        VALUES (#{time}, #{ip}, #{username}, #{thing}, #{type}, #{status})
+    </insert>
+
+    <select id="getAllDataLog" resultType="com.rewrite.selfexamsystem.domain.DataLog">
+        SELECT time, ip, username, thing, type, status
+        FROM data_log
+    </select>
+</mapper>

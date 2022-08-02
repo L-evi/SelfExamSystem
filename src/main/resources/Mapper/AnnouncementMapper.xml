@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 管理公告数据库announcement -->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rewrite.selfexamsystem.mapper.AnnouncementMapper">
+    <!-- 添加公告 -->
+    <insert id="addAnnouncement" parameterType="com.rewrite.selfexamsystem.domain.Announcement">
+        INSERT INTO announcement(title, time, author, body, filename, isSendEmail)
+        VALUES (#{title}, #{time}, #{author}, #{body}, #{filename}, #{isSendEmail})
+    </insert>
+    <!-- 分页查询公告 -->
+    <select id="showSomeAnnouncement" resultType="com.rewrite.selfexamsystem.domain.Announcement">
+        SELECT title, time, author, body, filename, isSendEmail
+        FROM announcement
+        LIMIT #{down},#{up}
+    </select>
+    <!-- 返回所有的公告 -->
+    <select id="showAllAnnouncement" resultType="com.rewrite.selfexamsystem.domain.Announcement">
+        SELECT title, time, author, body, filename, isSendEmail
+        FROM announcement
+    </select>
+
+    <!-- 根据keyWords对title和body中的内容进行模糊搜索，并且进行分页 -->
+    <select id="searchAnnouncement"
+            resultType="com.rewrite.selfexamsystem.domain.Announcement">
+        SELECT title, time, author, body, filename, isSendEmail
+        FROM announcement
+        WHERE title LIKE CONCAT('%', #{keyWords}, '%')
+           OR body LIKE CONCAT('%', #{keyWords}, '%')
+        LIMIT #{down},#{up}
+    </select>
+
+    <!-- 获取公告的数量 -->
+    <select id="getAnnouncementNumber" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM announcement
+    </select>
+
+    <!-- 根据时间和标题删除公告 -->
+    <delete id="deleteAnnouncement" parameterType="com.rewrite.selfexamsystem.domain.Announcement">
+        DELETE
+        FROM announcement
+        WHERE time = #{time}
+          AND title = #{title}
+    </delete>
+
+    <!-- 根据时间和标题查询公告 -->
+    <select id="getAnnouncement" resultType="com.rewrite.selfexamsystem.domain.Announcement"
+            parameterType="com.rewrite.selfexamsystem.domain.Announcement">
+        SELECT title, time, author, body, filename, isSendEmail
+        FROM announcement
+        WHERE time = #{time}
+          AND title = #{title}
+    </select>
+    <!-- 根据关键词模糊查询，返回查询结果的数量 -->
+    <select id="searchAnnouncementNumber" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM announcement
+        WHERE title LIKE CONCAT('%', #{keyWords}, '%')
+           OR body LIKE CONCAT('%', #{keyWords}, '%')
+    </select>
+</mapper>

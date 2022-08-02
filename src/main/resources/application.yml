@@ -1,0 +1,54 @@
+# 连接数据库的信息
+# 同个方法多次操作：https://blog.csdn.net/wcdunf/article/details/117054894
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: Lwt20011121
+    url: jdbc:mysql://112.74.125.172:33066/course?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&allowMultiQueries=true
+  # 初始化dispatcherServlet，默认-1未开启，0及以上为开启
+  mvc:
+    servlet:
+      load-on-startup: 1
+  # 添加依aop依赖，默认为true
+  aop:
+    auto: true
+  # Spring Mail的配置
+  mail:
+    host: smtp.qq.com
+    username: 3573897471@qq.com
+    password: nhfgxvxltgalcjje
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          ssl:
+            enable: true
+    port: 465
+  servlet:
+    multipart:
+#      单个文件大小
+      max-file-size: 10MB
+#      全部文件大小
+      max-request-size: 100MB
+# 修改网页端口
+server:
+  port: 6060
+# 提供扫描数据库操作文件的入口
+# 参考链接：https://blog.csdn.net/weixin_42109200/article/details/117412010
+mybatis:
+  mapper-locations: classpath:Mapper/*.xml
+
+#  Redis的配置
+redis:
+  host: localhost
+  port: 6379
+
+
+
+
+
+

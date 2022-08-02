@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 参考链接：http://c.biancheng.net/mybatis/mapper.html -->
+<!-- 记得提供扫描入口，参考链接：https://blog.csdn.net/weixin_42109200/article/details/117412010 -->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rewrite.selfexamsystem.mapper.OpenTimeMapper">
+    <!-- 插入时间 -->
+    <insert id="addOpenTime">
+        insert into open_time(id, begin, end)
+        values (#{id}, #{startTime}, #{endTime})
+    </insert>
+    <!-- 清空数据库 -->
+    <!-- 参考链接：https://www.cnblogs.com/yang101/p/11668312.html -->
+    <update id="clearOpenTime">
+        truncate table open_time;
+    </update>
+    <!-- 根据id降序排序，选择第一条 -->
+    <select id="getOpenTime" resultType="com.rewrite.selfexamsystem.domain.OpenTime">
+        select *
+        from open_time
+        order by id DESC LIMIT 1
+    </select>
+</mapper>

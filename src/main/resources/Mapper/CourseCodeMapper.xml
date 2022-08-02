@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 管理课程数据库course_code -->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rewrite.selfexamsystem.mapper.CourseCodeMapper">
+    <!-- 插入课程信息 -->
+    <insert id="insertCourse" parameterType="com.rewrite.selfexamsystem.domain.Course">
+        insert into course_code(code, name)
+        values (#{code}, #{name})
+    </insert>
+    <!-- 删除指定课程信息 -->
+    <delete id="deleteCourse" parameterType="com.rewrite.selfexamsystem.domain.Course">
+        delete
+        from course_code
+        where code = #{code}
+          and name = #{name}
+    </delete>
+    <!-- 更新指定课程信息 -->
+    <update id="updateCourse" parameterType="java.util.Map">
+        update course_code
+        set name = #{newname},
+            code = #{newcode}
+        where code = #{oldcode}
+          and name = #{oldname}
+    </update>
+    <!-- 选择所有课程信息 -->
+    <!-- 使用Map防止把null的数据也返回 -->
+    <select id="selectAllCourse" resultType="com.rewrite.selfexamsystem.domain.Course">
+        select code, name
+        from course_code
+    </select>
+    <!-- 根据Code选择课程 -->
+    <select id="selectCourseByCode" parameterType="java.lang.String"
+            resultType="com.rewrite.selfexamsystem.domain.Course">
+        SELECT *
+        FROM course_code
+        WHERE code = #{code}
+    </select>
+</mapper>

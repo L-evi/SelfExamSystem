@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 管理员所用数据库语句文件 -->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rewrite.selfexamsystem.mapper.AdminMapper">
+    <!-- 根据account查询 #{0}：代表第一个参数-->
+    <select id="selectByAdminUsername"
+            resultType="com.rewrite.selfexamsystem.domain.Admin">
+        SELECT *
+        FROM admin_data
+        WHERE username = #{0}
+    </select>
+</mapper>

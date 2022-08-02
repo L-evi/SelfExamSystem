@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 用户User所用数据库语句文件 -->
+<!-- 参考链接：http://c.biancheng.net/mybatis/mapper.html -->
+<!-- 记得提供扫描入口，参考链接：https://blog.csdn.net/weixin_42109200/article/details/117412010 -->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rewrite.selfexamsystem.mapper.UserInformationMapper">
+
+    <!-- 根据ticket查询 #{0}：代表第一个参数-->
+    <select id="selectByUsername"
+            resultType="com.rewrite.selfexamsystem.domain.UserInformation">
+        select *
+        from user_information
+        where username = #{0};
+    </select>
+    <!-- 添加用户，将所有列属性填写 -->
+    <!-- 还要添加用户的账号ticket、密码userpass到user_data中用于后续登录 -->
+    <!-- 参考链接：https://blog.csdn.net/wcdunf/article/details/117054894 -->
+    <insert id="addUser" parameterType="com.rewrite.selfexamsystem.domain.UserInformation">
+        insert into user_information(username, tele, email, name, xb, sfzh)
+        values (#{username}, #{tele}, #{email}, #{name}, #{xb}, #{sfzh});
+    </insert>
+    <!-- 更新用户信息 -->
+    <update id="updateUserInformation" parameterType="com.rewrite.selfexamsystem.domain.UserInformation">
+        UPDATE user_information
+        <set>
+            <if test="tele != null and tele != ''">
+                tele = #{tele},
+            </if>
+            <if test="email != null and email != ''">
+                email = #{email},
+            </if>
+        </set>
+        WHERE username = #{username}
+    </update>
+    <!-- 获取所有人的邮箱 -->
+    <select id="getAllUserEmail" resultType="java.lang.String">
+        SELECT email
+        FROM user_information
+    </select>
+</mapper>

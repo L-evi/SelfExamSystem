@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 参考链接：http://c.biancheng.net/mybatis/mapper.html -->
+<!-- 记得提供扫描入口，参考链接：https://blog.csdn.net/weixin_42109200/article/details/117412010 -->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rewrite.selfexamsystem.mapper.SignUpMapper">
+    <!-- 获取报名状态 -->
+    <select id="getUserStatus" resultType="java.lang.Integer" parameterType="java.lang.String">
+        SELECT examineResult
+        FROM user_signup
+        WHERE username = #{username}
+    </select>
+    <!-- 获取用户的报名信息 -->
+    <select id="getUserSignUpInformation" parameterType="java.lang.String"
+            resultType="java.util.Map">
+        SELECT ui.username,
+               ui.tele,
+               ui.email,
+               ui.name,
+               ui.sfzh,
+               ui.xb,
+               user_signup.majorName,
+               user_signup.majorLevel,
+               user_signup.courseCode,
+               user_signup.file
+        FROM user_signup
+                 CROSS JOIN user_information ui
+                            on user_signup.username = ui.username
+        WHERE ui.username = #{username}
+    </select>
+    <!-- 插入用户报名信息 -->
+    <insert id="uploadUserSignUpInformation" parameterType="com.rewrite.selfexamsystem.domain.SignUp">
+        INSERT INTO user_signup(username, majorName, majorLevel, courseCode, file, examineResult)
+        VALUES (#{username}, #{majorName}, #{majorLevel}, #{courseCode}, #{file}, #{examineResult})
+    </insert>
+    <!-- 更新用户报名信息 -->
+    <update id="updateUserSignUpInformation" parameterType="com.rewrite.selfexamsystem.domain.SignUp">
+        UPDATE user_signup
+        <set>
+            <if test="majorName != null and majorName != ''">
+                majorName = #{majorName},
+            </if>
+            <if test="majorLevel != null and majorLevel != ''">
+                majorLevel = #{majorLevel},
+            </if>
+            <if test="courseCode != null and courseCode != ''">
+                courseCode = #{courseCode},
+            </if>
+            <if test="file != null and file != ''">
+                file = #{file},
+            </if>
+        </set>
+        WHERE username = #{username}
+    </update>
+    <!-- 删除用户报名信息 -->
+    <delete id="deleteUserInformation" parameterType="java.lang.String">
+        DELETE
+        FROM user_signup
+        WHERE username = #{username}
+    </delete>
+    <!-- 获取报名人数 -->
+    <select id="getSignUpPersonNumber" resultType="java.lang.Integer">
+        SELECT COUNT(username)
+        FROM user_signup
+    </select>
+    <!-- 获取全部的报名用户信息 -->
+    <select id="getAllSignUpPerson" resultType="java.util.Map">
+        SELECT ui.username,
+               ui.tele,
+               ui.email,
+               ui.name,
+               ui.sfzh,
+               ui.xb,
+               user_signup.majorName,
+               user_signup.majorLevel,
+               user_signup.courseCode,
+               user_signup.file
+        FROM user_signup
+                 CROSS JOIN user_information ui
+                            on user_signup.username = ui.username
+    </select>
+    <!-- 获取一部分的报名信息 -->
+    <select id="getSomeSignUpPerson" resultType="java.util.Map">
+        SELECT ui.username,
+               ui.tele,
+               ui.email,
+               ui.name,
+               ui.sfzh,
+               ui.xb,
+               user_signup.majorName,
+               user_signup.majorLevel,
+               user_signup.courseCode,
+               user_signup.file
+        FROM user_signup
+                 CROSS JOIN user_information ui
+                            on user_signup.username = ui.username
+        LIMIT #{down},#{up}
+    </select>
+
+    <!-- 管理员搜索筛选报名信息 -->
+    <select id="test" parameterType="java.util.Map" resultType="com.rewrite.selfexamsystem.domain.SignUp">
+        SELECT *
+        FROM user_signup
+        <where>
+            <if test="username != null and username ！=''">
+                username = #{username}
+            </if>
+            <if test="majorName != null and majorName != ''">
+                AND majorName = #{majorName}
+            </if>
+        </where>
+    </select>
+    <!-- 更新username对应的examineResult -->
+    <update id="updateExamineResult" parameterType="com.rewrite.selfexamsystem.domain.SignUp">
+        UPDATE user_signup
+        SET examineResult = #{examineResult}
+        WHERE username = #{username}
+    </update>
+
+</mapper>
