@@ -34,6 +34,13 @@ public class SignUpServiceImpl implements SignUpService {
     @Autowired
     private UserInformationMapper userInformationMapper;
 
+    /**
+     * @param token: 鉴权以及获取username
+     * @return 返回用户报名状态信息
+     * @description : 获取用户报名状态：用户通过username获取用户的报名状态
+     * @author Levi
+     * @since 2022/8/4 17:48
+     */
     @Override
     public ResponseResult getUserStatus(String token) throws Exception {
         JSONObject jsonObject = JSONObject.parseObject(JwtUtil.parseJwt(token).getSubject());
@@ -58,6 +65,13 @@ public class SignUpServiceImpl implements SignUpService {
         return new ResponseResult(ResultCode.SUCCESS, jsonObject);
     }
 
+    /**
+     * @param token: 鉴权以及获取username
+     * @return 返回用户报名信息
+     * @description : 获取用户报名信息：用户通过username获取用户报名信息详情
+     * @author Levi
+     * @since 2022/8/4 17:52
+     */
     @Override
     public ResponseResult getUserInformation(String token) throws Exception {
         JSONObject jsonObject = JSONObject.parseObject(JwtUtil.parseJwt(token).getSubject());
@@ -75,6 +89,16 @@ public class SignUpServiceImpl implements SignUpService {
         return new ResponseResult(ResultCode.SUCCESS, userSignUpInformation);
     }
 
+    /**
+     * @param token:           鉴权以及获取username
+     * @param files:           用户报名时一并上传的文件
+     * @param signUp:          用户的报名信息
+     * @param userInformation: 用户的个人信息
+     * @return 返回用户信息是否上传成功等信息
+     * @description : 上传用户报名信息：用户上传报名信息以及报名文件，并通过username存入到数据库中
+     * @author Levi
+     * @since 2022/8/4 17:54
+     */
     @Override
     public ResponseResult uploadUserInformation(String token, MultipartFile[] files, SignUp signUp, UserInformation userInformation) throws Exception {
         JSONObject jsonObject = JSONObject.parseObject(JwtUtil.parseJwt(token).getSubject());
@@ -117,6 +141,16 @@ public class SignUpServiceImpl implements SignUpService {
         return new ResponseResult(ResultCode.SUCCESS, jsonObject);
     }
 
+    /**
+     * @param token:           鉴权以及获取username
+     * @param files:           用户更新报名信息时一并上传的文件
+     * @param signUp:          用户的报名信息
+     * @param userInformation: 用户的个人信息
+     * @return 返回用户信息是否更新成功等信息
+     * @description : 更新用户报名信息：用户通过username更新报名信息到数据库中
+     * @author Levi
+     * @since 2022/8/4 17:54
+     */
     @Override
     public ResponseResult updateUserInformation(String token, MultipartFile[] files, SignUp signUp, UserInformation userInformation) throws Exception {
         JSONObject jsonObject = JSONObject.parseObject(JwtUtil.parseJwt(token).getSubject());
@@ -165,6 +199,13 @@ public class SignUpServiceImpl implements SignUpService {
         return new ResponseResult(ResultCode.SUCCESS, jsonObject);
     }
 
+    /**
+     * @param token: 鉴权以及获取username
+     * @return 返回删除用户信息是否成功等信息
+     * @description : 删除用户报名信息：用户通过username删除指定的用户报名信息，已审核的信息无法删除
+     * @author Levi
+     * @since 2022/8/4 17:56
+     */
     @Override
     public ResponseResult deleteUserInformation(String token) throws Exception {
         JSONObject jsonObject = JSONObject.parseObject(JwtUtil.parseJwt(token).getSubject());
@@ -195,6 +236,13 @@ public class SignUpServiceImpl implements SignUpService {
         return new ResponseResult(ResultCode.SUCCESS, jsonObject);
     }
 
+    /**
+     * @param token: 鉴权
+     * @return 返回报名人数
+     * @description : 返回报名人数：管理员查询数据库获取报名人数
+     * @author Levi
+     * @since 2022/8/4 18:00
+     */
     @Override
     public ResponseResult adminGetPersoonNumber(String token) throws Exception {
         JSONObject jsonObject = JSONObject.parseObject(JwtUtil.parseJwt(token).getSubject());
@@ -211,6 +259,14 @@ public class SignUpServiceImpl implements SignUpService {
         return new ResponseResult(ResultCode.SUCCESS, jsonObject);
     }
 
+    /**
+     * @param getMap: 获取筛选信息以及搜索信息
+     * @param token:  鉴权
+     * @return 返回搜索报名信息的条数
+     * @description :返回搜索的数量：管理员通过筛选或者搜索用户报名信息，返回搜索到信息的数量
+     * @author Levi
+     * @since 2022/8/4 18:02
+     */
     @Override
     public ResponseResult adminGetSearchNumber(Map<String, Object> getMap, String token) throws Exception {
         JSONObject jsonObject = JSONObject.parseObject(JwtUtil.parseJwt(token).getSubject());
@@ -246,6 +302,14 @@ public class SignUpServiceImpl implements SignUpService {
         return new ResponseResult(ResultCode.SUCCESS, jsonObject);
     }
 
+    /**
+     * @param page:  数据分页，如果为-1则不需要分页，返回全部
+     * @param token: 鉴权
+     * @return 返回获取的用户报名信息
+     * @description :获取用户报名信息：管理员获取报名信息，根据page进行分页
+     * @author Levi
+     * @since 2022/8/4 18:05
+     */
     @Override
     public ResponseResult adminGetInformation(String page, String token) throws Exception {
         JSONObject jsonObject = JSONObject.parseObject(JwtUtil.parseJwt(token).getSubject());
@@ -267,6 +331,14 @@ public class SignUpServiceImpl implements SignUpService {
         return new ResponseResult(ResultCode.SUCCESS, signUpMapper.getSomeSignUpPerson(down, up));
     }
 
+    /**
+     * @param getMap: 从中获取筛选关键词以及搜索的关键词
+     * @param token:  鉴权
+     * @return 返回筛选后以及搜索到的用户信息
+     * @description : 搜索报名信息：管理员筛选以及搜索关键词获取用户报名信息
+     * @author Levi
+     * @since 2022/8/4 19:38
+     */
     @Override
     public ResponseResult adminSearchInformation(Map<String, Object> getMap, String token) throws Exception {
         JSONObject jsonObject = JSONObject.parseObject(JwtUtil.parseJwt(token).getSubject());
@@ -299,6 +371,14 @@ public class SignUpServiceImpl implements SignUpService {
         return new ResponseResult(ResultCode.SUCCESS, signUpInformation);
     }
 
+    /**
+     * @param signUp: 从中获取用户报名信息
+     * @param token:  鉴权
+     * @return 返回审核是否成功相关信息
+     * @description : 审核用户报名信息：管理员审核用户信息并传入到数据库中
+     * @author Levi
+     * @since 2022/8/4 19:40
+     */
     @Override
     public ResponseResult adminExamine(SignUp signUp, String token) throws Exception {
         JSONObject jsonObject = JSONObject.parseObject(JwtUtil.parseJwt(token).getSubject());

@@ -104,7 +104,14 @@ public class SignUpController {
         return signUpService.adminGetPersoonNumber(token);
     }
 
-
+    /**
+     * @param getMap:    从中获取筛选数据以及搜索数据
+     * @param headerMap: 从中获取token
+     * @return num：返回搜索到的报名信息的数量
+     * @description : 搜索报名信息：通过关键词以及筛选词进行报名信息搜索，返回搜索到用户信息的数量
+     * @author Levi
+     * @since 2022/8/4 17:46
+     */
     @RequestMapping(value = "/admin/getSearchNumber", method = RequestMethod.POST)
     public ResponseResult adminGetSearchNumber(@RequestBody Map<String, Object> getMap, @RequestHeader Map<String, Object> headerMap) throws Exception {
         String token = (String) headerMap.get("token");
@@ -126,7 +133,14 @@ public class SignUpController {
         return signUpService.adminGetInformation(page, token);
     }
 
-
+    /**
+     * @param getMap:    从中获取筛选数据以及搜索数据
+     * @param headerMap: 从中获取token
+     * @return List：返回搜索到或者筛选到的数据
+     * @description : 搜索报名信息：通过关键词以及筛选词进行报名信息搜索
+     * @author Levi
+     * @since 2022/8/4 17:46
+     */
     @RequestMapping(value = "/admin/searchInformation", method = RequestMethod.POST)
     public ResponseResult adminSearchInformation(@RequestBody Map<String, Object> getMap, @RequestHeader Map<String, Object> headerMap) throws Exception {
         String token = (String) headerMap.get("token");
