@@ -106,9 +106,9 @@ public class SignUpController {
 
 
     @RequestMapping(value = "/admin/getSearchNumber", method = RequestMethod.POST)
-    public ResponseResult adminGetSearchNumber() {
-
-        return null;
+    public ResponseResult adminGetSearchNumber(@RequestBody Map<String, Object> getMap, @RequestHeader Map<String, Object> headerMap) throws Exception {
+        String token = (String) headerMap.get("token");
+        return signUpService.adminGetSearchNumber(getMap, token);
     }
 
     /**
@@ -128,9 +128,9 @@ public class SignUpController {
 
 
     @RequestMapping(value = "/admin/searchInformation", method = RequestMethod.POST)
-    public ResponseResult adminSearchInformation(@RequestBody Map<String, Object> getMap, @RequestHeader Map<String, Object> headerMap) {
+    public ResponseResult adminSearchInformation(@RequestBody Map<String, Object> getMap, @RequestHeader Map<String, Object> headerMap) throws Exception {
         String token = (String) headerMap.get("token");
-        return null;
+        return signUpService.adminSearchInformation(getMap, token);
     }
 
     /**

@@ -33,7 +33,7 @@ public interface SignUpService {
      */
     ResponseResult adminGetPersoonNumber(String token) throws Exception;
 
-    ResponseResult adminGetSearchNumber();
+    ResponseResult adminGetSearchNumber(Map<String, Object> getMap, String token) throws Exception;
 
     ResponseResult adminGetInformation(String page, String token) throws Exception;
 

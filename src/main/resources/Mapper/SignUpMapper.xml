@@ -94,14 +94,13 @@
                user_signup.file
         FROM user_signup
                  CROSS JOIN user_information ui
-                            on user_signup.username = ui.username
+                            ON user_signup.username = ui.username
         LIMIT #{down},#{up}
     </select>
 
     <!-- 管理员搜索筛选报名信息 -->
-    <select id="test" parameterType="java.util.Map" resultType="java.util.Map">
-        SELECT
-        ui.username,
+    <select id="searchSignUpInformation" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT ui.username,
         ui.tele,
         ui.email,
         ui.name,
@@ -111,10 +110,9 @@
         user_signup.majorLevel,
         user_signup.courseCode,
         user_signup.file,
-        user_signup..examineResult,
+        user_signup.examineResult
         FROM user_signup
-        CROSS JOIN user_information ui
-        on user_signup.username = ui.username
+        CROSS JOIN user_information ui ON user_signup.username = ui.username
         <where>
             <if test="majorName != null and majorName != ''">
                 majorName = #{majorName}
@@ -144,6 +142,7 @@
                 AND tele LIKE CONCAT('%', #{tele}, '%')
             </if>
         </where>
+        LIMIT #{down},#{up}
     </select>
     <!-- 更新username对应的examineResult -->
     <update id="updateExamineResult" parameterType="com.rewrite.selfexamsystem.domain.SignUp">

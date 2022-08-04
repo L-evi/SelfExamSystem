@@ -447,12 +447,26 @@ class SelfExamSystemApplicationTests {
     @Test
     public void testColumnSelect() {
         Map<String, Object> getMap = new HashMap<>();
-        final String content = "name";
-        final String searchKey = "姓名";
+        final String content = "";
+        String searchKey = null;
         getMap.put(content, searchKey);
-        for (Map<String, Object> res : signUpMapper.test(getMap)) {
+        getMap.put("up", 10);
+        getMap.put("down", 0);
+        for (Map<String, Object> res : signUpMapper.searchSignUpInformation(getMap)) {
             System.out.println(res.toString());
         }
-        System.out.println();
+        System.out.println(signUpMapper.searchSignUpInformation(getMap).size());
+    }
+
+    //    测试：将Map中的数据放到另一个Map中
+    @Test
+    public void testMapPutAnotherMap() {
+        Map<String, Object> getMap = new HashMap<>();
+        getMap.put("des", "test");
+        getMap.put("test", "des");
+        Map<String, Object> anotherMap = new HashMap<>();
+        anotherMap.putAll(getMap);
+        System.out.println(getMap.toString());
+        System.out.println(anotherMap.toString());
     }
 }

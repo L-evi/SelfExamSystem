@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -210,8 +212,38 @@ public class SignUpServiceImpl implements SignUpService {
     }
 
     @Override
-    public ResponseResult adminGetSearchNumber() {
-        return null;
+    public ResponseResult adminGetSearchNumber(Map<String, Object> getMap, String token) throws Exception {
+        JSONObject jsonObject = JSONObject.parseObject(JwtUtil.parseJwt(token).getSubject());
+//        鉴权
+        String role = (String) jsonObject.get("role");
+        if (!"admin".equals(role)) {
+            jsonObject = new JSONObject();
+            jsonObject.put("des", "权限不足无法搜索用户报名信息");
+            return new ResponseResult(ResultCode.TOKEN_EXPIRATION, jsonObject);
+        }
+//        获取其中的信息
+        String content = (String) getMap.get("content");
+        String keyWords = (String) getMap.get("keyWords");
+//       获取页码
+        int page = Integer.parseInt((String) getMap.get("page"));
+        int up = page * 10;
+        int down = up - 10;
+//        移除不必要的Key
+        getMap.remove("page");
+        getMap.remove("content");
+        getMap.remove("keyWords");
+//        将数据写入到map中
+        Map<String, Object> searchMap = new HashMap<>();
+        searchMap.put(content, keyWords);
+        searchMap.put("up", up);
+        searchMap.put("down", down);
+        searchMap.putAll(getMap);
+//        查找数据库
+        List<Map<String, Object>> signUpInformation = signUpMapper.searchSignUpInformation(searchMap);
+        jsonObject = new JSONObject();
+        jsonObject.put("des", "查询用户报名信息数量成功");
+        jsonObject.put("num", signUpInformation.size());
+        return new ResponseResult(ResultCode.SUCCESS, jsonObject);
     }
 
     @Override
@@ -238,7 +270,33 @@ public class SignUpServiceImpl implements SignUpService {
     @Override
     public ResponseResult adminSearchInformation(Map<String, Object> getMap, String token) throws Exception {
         JSONObject jsonObject = JSONObject.parseObject(JwtUtil.parseJwt(token).getSubject());
-        return null;
+//        鉴权
+        String role = (String) jsonObject.get("role");
+        if (!"admin".equals(role)) {
+            jsonObject = new JSONObject();
+            jsonObject.put("des", "权限不足无法搜索用户报名信息");
+            return new ResponseResult(ResultCode.TOKEN_EXPIRATION, jsonObject);
+        }
+//        获取其中的信息
+        String content = (String) getMap.get("content");
+        String keyWords = (String) getMap.get("keyWords");
+//       获取页码
+        int page = Integer.parseInt((String) getMap.get("page"));
+        int up = page * 10;
+        int down = up - 10;
+//        移除不必要的Key
+        getMap.remove("page");
+        getMap.remove("content");
+        getMap.remove("keyWords");
+//        将数据写入到map中
+        Map<String, Object> searchMap = new HashMap<>();
+        searchMap.put(content, keyWords);
+        searchMap.put("up", up);
+        searchMap.put("down", down);
+        searchMap.putAll(getMap);
+//        查找数据库
+        List<Map<String, Object>> signUpInformation = signUpMapper.searchSignUpInformation(searchMap);
+        return new ResponseResult(ResultCode.SUCCESS, signUpInformation);
     }
 
     @Override

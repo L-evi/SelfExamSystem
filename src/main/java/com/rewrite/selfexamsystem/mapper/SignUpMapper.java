@@ -32,10 +32,9 @@ public interface SignUpMapper {
 
     List<Map<String, Object>> getSomeSignUpPerson(int down, int up);
 
-    List<Map<String, Object>> searchSignUpInformation();
+    List<Map<String, Object>> searchSignUpInformation(Map<String, Object> getMap);
 
     int updateExamineResult(SignUp signUp);
 
-
-    List<Map<String, Object>> test(Map<String, Object> getMap);
+    
 }
