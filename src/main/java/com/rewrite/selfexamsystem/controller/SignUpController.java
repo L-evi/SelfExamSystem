@@ -128,8 +128,8 @@ public class SignUpController {
 
 
     @RequestMapping(value = "/admin/searchInformation", method = RequestMethod.POST)
-    public ResponseResult adminSearchInformation() {
-
+    public ResponseResult adminSearchInformation(@RequestBody Map<String, Object> getMap, @RequestHeader Map<String, Object> headerMap) {
+        String token = (String) headerMap.get("token");
         return null;
     }
 

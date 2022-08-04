@@ -447,10 +447,12 @@ class SelfExamSystemApplicationTests {
     @Test
     public void testColumnSelect() {
         Map<String, Object> getMap = new HashMap<>();
-        final String content = "username";
-        final String searchKey = "1";
+        final String content = "name";
+        final String searchKey = "姓名";
         getMap.put(content, searchKey);
-        System.out.println(signUpMapper.test(getMap));
+        for (Map<String, Object> res : signUpMapper.test(getMap)) {
+            System.out.println(res.toString());
+        }
         System.out.println();
     }
 }

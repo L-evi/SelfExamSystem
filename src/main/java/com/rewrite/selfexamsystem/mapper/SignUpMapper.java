@@ -37,5 +37,5 @@ public interface SignUpMapper {
     int updateExamineResult(SignUp signUp);
 
 
-    List<SignUp> test(Map<String, Object> getMap);
+    List<Map<String, Object>> test(Map<String, Object> getMap);
 }

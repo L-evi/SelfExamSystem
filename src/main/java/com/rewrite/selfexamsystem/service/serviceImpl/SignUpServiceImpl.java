@@ -236,7 +236,8 @@ public class SignUpServiceImpl implements SignUpService {
     }
 
     @Override
-    public ResponseResult adminSearchInformation() {
+    public ResponseResult adminSearchInformation(Map<String, Object> getMap, String token) throws Exception {
+        JSONObject jsonObject = JSONObject.parseObject(JwtUtil.parseJwt(token).getSubject());
         return null;
     }
 

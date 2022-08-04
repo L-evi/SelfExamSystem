@@ -99,15 +99,49 @@
     </select>
 
     <!-- 管理员搜索筛选报名信息 -->
-    <select id="test" parameterType="java.util.Map" resultType="com.rewrite.selfexamsystem.domain.SignUp">
-        SELECT *
+    <select id="test" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+        ui.username,
+        ui.tele,
+        ui.email,
+        ui.name,
+        ui.sfzh,
+        ui.xb,
+        user_signup.majorName,
+        user_signup.majorLevel,
+        user_signup.courseCode,
+        user_signup.file,
+        user_signup..examineResult,
         FROM user_signup
+        CROSS JOIN user_information ui
+        on user_signup.username = ui.username
         <where>
-            <if test="username != null and username ！=''">
-                username = #{username}
-            </if>
             <if test="majorName != null and majorName != ''">
-                AND majorName = #{majorName}
+                majorName = #{majorName}
+            </if>
+            <if test="majorLevel != null and majorLevel != ''">
+                AND majorLevel = #{majorLevel}
+            </if>
+            <if test="examineResult != null and examineResult != ''">
+                AND examineResult = #{examineResult}
+            </if>
+            <if test="xb != null and xb != ''">
+                AND xb = #{xb}
+            </if>
+            <if test="name != null and name != ''">
+                AND name LIKE CONCAT('%', #{name}, '%')
+            </if>
+            <if test="sfzh != null and sfzh != ''">
+                AND sfzh LIKE CONCAT('%', #{sfzh}, '%')
+            </if>
+            <if test="username != null and username != ''">
+                AND username LIKE CONCAT('%', #{username}, '%')
+            </if>
+            <if test="email != null and email != ''">
+                AND email LIKE CONCAT('%', #{email}, '%')
+            </if>
+            <if test="tele != null and tele != ''">
+                AND tele LIKE CONCAT('%', #{tele}, '%')
             </if>
         </where>
     </select>

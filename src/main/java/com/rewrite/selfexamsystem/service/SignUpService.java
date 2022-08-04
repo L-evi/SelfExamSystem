@@ -5,6 +5,8 @@ import com.rewrite.selfexamsystem.domain.UserInformation;
 import com.rewrite.selfexamsystem.utils.response.ResponseResult;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Map;
+
 /**
  * @author: Levi
  * @description: SignUp报名Service接口
@@ -35,7 +37,7 @@ public interface SignUpService {
 
     ResponseResult adminGetInformation(String page, String token) throws Exception;
 
-    ResponseResult adminSearchInformation();
+    ResponseResult adminSearchInformation(Map<String, Object> getMap, String token) throws Exception;
 
     ResponseResult adminExamine(SignUp signUp, String token) throws Exception;
 }
