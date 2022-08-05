@@ -135,7 +135,7 @@ class SelfExamSystemApplicationTests {
 
     @Test
     public void testUpdateUserInformation() {
-        UserInformation userInformation = new UserInformation("1", "13356402880", "2810292412@qq.com", "李", 0, "440782200111216519");
+        UserInformation userInformation = new UserInformation("2", "13356402880", "2810292412@qq.com", "李", 2, "440782200111216519");
         System.out.println(userInformationMapper.updateUserInformation(userInformation));
     }
 
@@ -476,4 +476,6 @@ class SelfExamSystemApplicationTests {
         System.out.println(userInformationMapper.getEmail("1"));
         System.out.println(userInformationMapper.getEmail("100"));
     }
+
+
 }

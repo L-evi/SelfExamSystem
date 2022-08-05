@@ -31,6 +31,12 @@
             <if test="email != null and email != ''">
                 email = #{email},
             </if>
+            <if test="xb != null and xb != ''">
+                xb = #{xb},
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name}
+            </if>
         </set>
         WHERE username = #{username}
     </update>

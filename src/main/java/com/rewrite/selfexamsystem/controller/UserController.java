@@ -85,7 +85,7 @@ public class UserController {
      * @since 2022/7/21 23:37
      */
     @DataLogAnnotation(thing = "用户修改个人信息", peopleType = "UserInformation")
-    @RequestMapping(value = "/modifyinfo", method = RequestMethod.POST)
+    @RequestMapping(value = "/modifyInformation", method = RequestMethod.POST)
     public ResponseResult UserModifyInformation(@RequestBody UserInformation userInformation, @RequestHeader Map<String, Object> getMap) throws Exception {
         return userService.UserModifyInformation(userInformation, (String) getMap.get("token"));
     }
