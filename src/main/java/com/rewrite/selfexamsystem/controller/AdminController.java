@@ -22,6 +22,13 @@ public class AdminController {
     @Autowired
     private AdminServiceImpl adminloginserviceimpl;
 
+    /**
+     * @param headerMap: 从中获取token
+     * @return 返回token登录是否成功等信息
+     * @description : 管理员Token登录：从header中获取token然后重新登陆，用于刷新页面时可以保持登陆状态
+     * @author Levi
+     * @since 2022/8/5 11:01
+     */
     @RequestMapping(value = "/admin/tokenLogin", method = RequestMethod.POST)
     public ResponseResult adminTokenLogin(@RequestHeader Map<String, Object> headerMap) throws Exception {
         String token = (String) headerMap.get("token");

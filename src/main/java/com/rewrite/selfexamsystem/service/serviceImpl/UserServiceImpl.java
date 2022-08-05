@@ -27,13 +27,11 @@ import java.util.Objects;
  */
 @Service
 public class UserServiceImpl implements UserService {
-    //    引入Mapper操作数据库
     @Autowired
     private UserInformationMapper userInformationMapper;
     @Autowired
     private LoginDataMapper loginDataMapper;
 
-    //    引入redis操作
     @Autowired
     private RedisCache redisCache;
 
