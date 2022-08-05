@@ -75,7 +75,6 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                 throw new RuntimeException("user用户未登录");
             }
             //        存入到SecurityContextHolder：第一个用户主体，第二个用户密码，可以null，第三个权限信息，稍后补充
-//        TODO 补充用户权限信息（暂时不需要）
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(loginData, null, null);
             SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         } else if (role.equals("admin")) {

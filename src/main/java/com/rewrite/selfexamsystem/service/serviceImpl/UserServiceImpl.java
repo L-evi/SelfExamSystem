@@ -118,7 +118,7 @@ public class UserServiceImpl implements UserService {
      * @param userInformation: 前端传进来的修改后的用户信息
      * @param token:           前端传进来的Token
      * @return 根据修改结果返回前端是否成功的信息
-     * @description: 将前端传回来需要修改的用户数据替换掉数据库中指定的数据 TODO 邮箱验证
+     * @description: 将前端传回来需要修改的用户数据替换掉数据库中指定的数据
      * @author Levi
      * @since 2022/7/21 23:38
      */

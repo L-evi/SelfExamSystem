@@ -15,7 +15,7 @@ import java.util.Map;
 /**
  * @author Levi
  * @version 3.0 (created by Spring Boot)
- * @description: TODO 将所有的响应用ResponseResult封装
+ * @description: 用户的Controller层
  * @since 2022/5/7 11:37
  */
 //采用Restful风格接受传输数据
@@ -42,13 +42,7 @@ public class UserController {
 //        TODO 参数校验
 //        参数写入
         LoginData loginData = new LoginData((String) getMap.get("username"), (String) getMap.get("password"));
-        UserInformation userInformation =
-                new UserInformation((String) getMap.get("username"),
-                        (String) getMap.get("tele"),
-                        (String) getMap.get("email"),
-                        (String) getMap.get("name"),
-                        Integer.parseInt((String) getMap.get("xb")),
-                        (String) getMap.get("sfzh"));
+        UserInformation userInformation = new UserInformation((String) getMap.get("username"), (String) getMap.get("tele"), (String) getMap.get("email"), (String) getMap.get("name"), Integer.parseInt((String) getMap.get("xb")), (String) getMap.get("sfzh"));
         return userServiceImpl.UserRegisterService(userInformation, loginData);
     }
 

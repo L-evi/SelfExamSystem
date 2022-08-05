@@ -13,7 +13,7 @@ import java.util.Map;
 
 /**
  * @author: Levi
- * @description: TODO
+ * @description: 管理员用于登录、注销的Controller
  * @since: 2022/7/22 22:04
  * @version: 3.1（Created By Spring Boot）
  */
@@ -26,7 +26,14 @@ public class AdminLoginLogoutController {
     @Autowired
     private RedisCache redisCache;
 
-    //    TODO admin登录Controller
+    /**
+     * @param getMap:    获取管理员登录信息
+     * @param headerMap: 获取验证码的uuid
+     * @return 返回管理员是否登陆成功的信息
+     * @description : 管理员登录：管理员通过账号密码以及验证码进行登录
+     * @author Levi
+     * @since 2022/8/5 11:06
+     */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseResult AdminLogin(@RequestBody Map<String, Object> getMap, @RequestHeader Map<String, Object> headerMap) {
 //        验证验证码

@@ -4,16 +4,17 @@ import com.rewrite.selfexamsystem.domain.Course;
 import com.rewrite.selfexamsystem.service.serviceImpl.CourseCodeServiceImpl;
 import com.rewrite.selfexamsystem.utils.response.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
  * @author Levi
  * @version 3.0 (created by Spring Boot)
- * @description: 用于管理课程方面接口的Controller, TODO 加入redis缓存
+ * @description: 用于管理课程方面接口的Controller
  * @since 2022/5/7 16:11
  */
 @RestController

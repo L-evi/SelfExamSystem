@@ -17,7 +17,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 /**
  * @author: Levi
- * @description: TODO security的配置类
+ * @description: security的配置类
  * @since: 2022/7/20 10:09
  * @version: 3.1（Created By Spring Boot）
  */
