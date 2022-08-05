@@ -1,11 +1,17 @@
 package com.rewrite.selfexamsystem.controller.TestController;
 
 import com.rewrite.selfexamsystem.Annotation.TestAnnotation;
+import com.rewrite.selfexamsystem.utils.KaptchaUtil;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.awt.image.BufferedImage;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -57,5 +63,23 @@ public class Test {
     public String SayHello1() {
         System.out.println("Hello AOP!!!");
         return "1";
+    }
+
+    @RequestMapping(value = "/test/getVerifyCode")
+    public void getVerifyCode(HttpServletRequest request, HttpServletResponse response) {
+        String randomText = KaptchaUtil.getRandomText(200);
+        try {
+            System.out.println(randomText);
+            BufferedImage verifyImage = KaptchaUtil.getVerifyImage(2000, 690, randomText);
+            response.setContentType("image/jpeg");
+            response.setHeader("key", randomText);
+            // 将图片转换陈字符串给前端
+            OutputStream stream = response.getOutputStream();
+            ImageIO.write(verifyImage, "jpg", stream);
+            stream.flush();
+            stream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
