@@ -77,6 +77,13 @@ public class UserServiceImpl implements UserService {
     public ResponseResult UserTokenLogin(String token) throws Exception {
         Claims claims = JwtUtil.parseJwt(token);
         JSONObject jsonObject = JSONObject.parseObject(claims.getSubject());
+//      鉴权
+        String role = (String) jsonObject.get("role");
+        if (!"user".equals(role)) {
+            jsonObject = new JSONObject();
+            jsonObject.put("des", "权限不足，无法登录");
+            return new ResponseResult(ResultCode.TOKEN_EXPIRATION, jsonObject);
+        }
         String username = (String) jsonObject.get("username");
 //        从redis中获取相关信息
         UserInformation userInformation = redisCache.getCacheObject("user_information:" + username);
@@ -85,6 +92,7 @@ public class UserServiceImpl implements UserService {
         jsonObject.put("des", "Token登录成功");
         jsonObject.put("username", username);
         jsonObject.put("name", userInformation.getName());
+        jsonObject.put("token", token);
         return new ResponseResult(ResultCode.SUCCESS, jsonObject);
     }
 
