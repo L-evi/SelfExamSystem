@@ -1,6 +1,5 @@
 package com.rewrite.selfexamsystem.service;
 
-import com.rewrite.selfexamsystem.domain.Admin;
 import com.rewrite.selfexamsystem.domain.LoginData;
 import com.rewrite.selfexamsystem.utils.response.ResponseResult;
 
@@ -15,5 +14,5 @@ public interface AdminLoginLogoutService {
 
     ResponseResult login(LoginData loginData);
 
-    ResponseResult logout(Admin admin);
+    ResponseResult logout();
 }

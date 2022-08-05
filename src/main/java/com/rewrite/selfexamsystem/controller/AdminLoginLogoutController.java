@@ -52,9 +52,15 @@ public class AdminLoginLogoutController {
         return adminLoginLogoutService.login(loginData);
     }
 
-    //    TODO admin注销Controller
+    /**
+     * @param :
+     * @return 返回管理员注销登录是否成功等信息
+     * @description : 管理员注销登录：管理员注销登录的controller接口
+     * @author Levi
+     * @since 2022/8/5 11:19
+     */
     @RequestMapping(value = "/logout", method = RequestMethod.POST)
     public ResponseResult AdminLogout() {
-        return null;
+        return adminLoginLogoutService.logout();
     }
 }

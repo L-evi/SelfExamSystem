@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
@@ -38,8 +39,7 @@ public class AdminLoginLogoutServiceImpl implements AdminLoginLogoutService {
     public ResponseResult login(LoginData loginData) {
         Object Username = loginData.getUsername();
         Object Password = loginData.getPassword();
-        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
-                new UsernamePasswordAuthenticationToken(Username, Password);
+        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(Username, Password);
         Authentication authentication = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
 
 //        如果对象为空则说明账户号密码错误
@@ -65,8 +65,21 @@ public class AdminLoginLogoutServiceImpl implements AdminLoginLogoutService {
         return new ResponseResult(ResultCode.SUCCESS, jsonObject);
     }
 
+    /**
+     * @param :
+     * @return 返回管理员注销登录是否成功等信息
+     * @description : 管理员注销登录：管理员注销登录，并删除redis中的数据
+     * @author Levi
+     * @since 2022/8/5 11:18
+     */
     @Override
-    public ResponseResult logout(Admin admin) {
-        return null;
+    public ResponseResult logout() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Admin admin = (Admin) authentication.getPrincipal();
+//        删除redis中对应username的user_data和user_information的数据
+        redisCache.deleteObject("admin:" + admin.getUsername());
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("des", "注销登录成功");
+        return new ResponseResult(ResultCode.SUCCESS, jsonObject);
     }
 }
