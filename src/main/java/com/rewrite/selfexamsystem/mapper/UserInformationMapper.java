@@ -46,4 +46,13 @@ public interface UserInformationMapper {
      * @since 2022/7/27 23:21
      */
     List<String> getAllUserEmail();
+
+    /**
+     * @param username:用户名
+     * @return 邮箱
+     * @description : 获取用户邮箱：通过username获取用户邮箱
+     * @author Levi
+     * @since 2022/8/5 16:08
+     */
+    String getEmail(String username);
 }

@@ -39,4 +39,10 @@
         SELECT email
         FROM user_information
     </select>
+    <!-- 通过username获取邮箱 -->
+    <select id="getEmail" resultType="java.lang.String" parameterType="java.lang.String">
+        SELECT email
+        FROM user_information
+        WHERE username = #{username}
+    </select>
 </mapper>

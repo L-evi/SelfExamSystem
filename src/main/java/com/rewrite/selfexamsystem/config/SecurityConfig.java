@@ -55,6 +55,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/login").anonymous()
                 .antMatchers("/getVerifyCode").anonymous()
                 .antMatchers("/checkVerifyCode").anonymous()
+                .antMatchers("/user/forgetPassword").anonymous()
+                .antMatchers("/user/resetPassword").anonymous()
 //                除了以上的页面，全部都需要认证
                 .anyRequest().authenticated();
 

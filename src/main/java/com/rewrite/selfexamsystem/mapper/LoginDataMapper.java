@@ -17,4 +17,6 @@ public interface LoginDataMapper {
     LoginData selectUserDataByUsername(String username);
 
     void addUsernamePassword(LoginData loginData);
+
+    int updatePassword(LoginData loginData);
 }

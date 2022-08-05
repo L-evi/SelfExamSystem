@@ -60,22 +60,10 @@ public class VerifyCodeController {
         String uuid = (String) headerMap.get("uuid");
         String encode = redisCache.getCacheObject("verify_code:" + uuid);
         String verifyCode = (String) getMap.get("verifyCode");
-/*//        从redis中获取验证码
-        String encode = redisCache.getCacheObject("verify_code:" + uuid);
-        if (encode == null || encode.isEmpty()) {
-            jsonObject.put("des", "验证码已过期，请重新获取");
-            return new ResponseResult(ResultCode.INVALID_PARAMETER, jsonObject);
-        }
-//        是否匹配
-        if (!bCryptPasswordEncoder.matches(verifyCode.toLowerCase(Locale.ROOT), encode)) {
-            jsonObject.put("des", "验证码错误，请重新获取输入");
-            return new ResponseResult(ResultCode.INVALID_PARAMETER, jsonObject);
-        }
-        jsonObject.put("des", "验证成功");*/
         Map<String, Object> res = KaptchaUtil.checkVerifyCode(encode, verifyCode);
         if ("fail".equals(res.get("status"))) {
             res.remove("status");
-            return new ResponseResult(ResultCode.LOGIN_TIMEOUT, res);
+            return new ResponseResult(ResultCode.REQUEST_TIMEOUT, res);
         }
         res.remove("status");
         return new ResponseResult(ResultCode.SUCCESS, res);

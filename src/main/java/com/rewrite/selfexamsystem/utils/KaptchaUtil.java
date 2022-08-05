@@ -7,7 +7,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.awt.image.BufferedImage;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Random;
 
 /**
  * @author Levi
@@ -108,13 +111,13 @@ public class KaptchaUtil {
 
     public static Map<String, Object> checkVerifyCode(String encode, String verifyCode) {
         Map<String, Object> res = new HashMap<>();
-        if (encode == null || encode.isEmpty()) {
+        if (encode == null || encode.isEmpty() || "".equals(encode)) {
             res.put("status", "fail");
             res.put("des", "验证码已过期，请重新获取");
             return res;
         }
 //        是否匹配
-        if (!bCryptPasswordEncoder.matches(verifyCode.toLowerCase(Locale.ROOT), encode)) {
+        if (!bCryptPasswordEncoder.matches(verifyCode, encode)) {
             res.put("status", "fail");
             res.put("des", "验证码错误，请重新输入");
             return res;

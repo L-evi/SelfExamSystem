@@ -9,6 +9,7 @@ import com.rewrite.selfexamsystem.utils.response.ResultCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -40,7 +41,7 @@ public class AdminLoginLogoutController {
         String uuid = (String) headerMap.get("uuid");
         String encode = redisCache.getCacheObject("verify_code:" + uuid);
         String verifyCode = (String) getMap.get("verifyCode");
-        Map<String, Object> res = KaptchaUtil.checkVerifyCode(encode, verifyCode);
+        Map<String, Object> res = KaptchaUtil.checkVerifyCode(encode, verifyCode.toLowerCase(Locale.ROOT));
         if ("fail".equals(res.get("status"))) {
             res.remove("status");
             return new ResponseResult(ResultCode.LOGIN_TIMEOUT, res);

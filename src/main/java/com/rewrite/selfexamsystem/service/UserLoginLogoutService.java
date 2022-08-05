@@ -14,4 +14,5 @@ public interface UserLoginLogoutService {
     ResponseResult login(LoginData loginData);
 
     ResponseResult logout();
+
 }

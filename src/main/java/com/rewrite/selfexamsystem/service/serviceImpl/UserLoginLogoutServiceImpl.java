@@ -74,6 +74,13 @@ public class UserLoginLogoutServiceImpl implements UserLoginLogoutService {
         return new ResponseResult(ResultCode.SUCCESS, jsonObject);
     }
 
+    /**
+     * @param :
+     * @return 返回用户注销登录是否成功等信息
+     * @description : 用户注销登录：用户退出登录并删除redis中的用户信息
+     * @author Levi
+     * @since 2022/8/5 15:43
+     */
     @Override
     public ResponseResult logout() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -85,4 +92,6 @@ public class UserLoginLogoutServiceImpl implements UserLoginLogoutService {
         jsonObject.put("des", "注销登录成功");
         return new ResponseResult(ResultCode.SUCCESS, jsonObject);
     }
+
+
 }

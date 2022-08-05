@@ -469,4 +469,11 @@ class SelfExamSystemApplicationTests {
         System.out.println(getMap.toString());
         System.out.println(anotherMap.toString());
     }
+
+    //    测试：从user_information数据库中获取指定username的邮箱
+    @Test
+    public void testGetEmailByUsername() {
+        System.out.println(userInformationMapper.getEmail("1"));
+        System.out.println(userInformationMapper.getEmail("100"));
+    }
 }

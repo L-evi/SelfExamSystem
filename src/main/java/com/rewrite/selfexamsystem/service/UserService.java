@@ -21,4 +21,7 @@ public interface UserService {
 
     ResponseResult UserModifyInformation(UserInformation userInformation, String token) throws Exception;
 
+    ResponseResult userForgetPassword(String username);
+
+    ResponseResult userResetPassword(LoginData loginData, String emailVerify);
 }
