@@ -29,12 +29,13 @@ public class UserLoginLogoutController {
     private RedisCache redisCache;
 
     /**
-     * @param getMap:
-     * @return
-     * @description: 用于用户登录、注销的Controller
+     * @param getMap: 从中获取账号密码以及验证码等信息
+     * @return 返回用户是否登陆成功等信息学
+     * @description: 用户登录：通过账号密码验证码进行登录
      * @author Levi
      * @since 2022/7/20 10:18
      */
+    @DataLogAnnotation(thing = "用户登录", peopleType = "user")
     @RequestMapping(value = "/user/login", method = RequestMethod.POST)
     public ResponseResult UserLogin(@RequestBody Map<String, Object> getMap, @RequestHeader Map<String, Object> headerMap) {
         JSONObject jsonObject = new JSONObject();
@@ -55,7 +56,14 @@ public class UserLoginLogoutController {
         return userLoginLogoutService.login(loginData);
     }
 
-    @DataLogAnnotation(thing = "用户注销登录", peopleType = "User")
+    /**
+     * @param :
+     * @return 返回用户是否注销登录成功等信息
+     * @description : 用户注销登录：用户注销登录并删除redis中相关信息
+     * @author Levi
+     * @since 2022/8/6 20:02
+     */
+    @DataLogAnnotation(thing = "用户注销登录", peopleType = "user")
     @RequestMapping(value = "/user/logout", method = RequestMethod.POST)
     public ResponseResult UserLogout() {
         return userLoginLogoutService.logout();

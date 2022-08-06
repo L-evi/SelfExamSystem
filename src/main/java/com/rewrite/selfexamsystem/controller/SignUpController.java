@@ -1,5 +1,6 @@
 package com.rewrite.selfexamsystem.controller;
 
+import com.rewrite.selfexamsystem.Annotation.DataLogAnnotation;
 import com.rewrite.selfexamsystem.domain.SignUp;
 import com.rewrite.selfexamsystem.domain.UserInformation;
 import com.rewrite.selfexamsystem.service.SignUpService;
@@ -29,6 +30,7 @@ public class SignUpController {
      * @author Levi
      * @since 2022/7/30 10:43
      */
+    @DataLogAnnotation(thing = "获取用户报名状态", peopleType = "user")
     @RequestMapping(value = "/user/getStatus", method = RequestMethod.POST)
     public ResponseResult getUserStatus(@RequestHeader Map<String, Object> getMap) throws Exception {
         String token = (String) getMap.get("token");
@@ -42,6 +44,7 @@ public class SignUpController {
      * @author Levi
      * @since 2022/7/30 10:45
      */
+    @DataLogAnnotation(thing = "获取用户报名信息", peopleType = "user")
     @RequestMapping(value = "/user/getInformation", method = RequestMethod.POST)
     public ResponseResult getUserInformation(@RequestHeader Map<String, Object> getMap) throws Exception {
         String token = (String) getMap.get("token");
@@ -57,6 +60,7 @@ public class SignUpController {
      * @author Levi
      * @since 2022/7/30 11:04
      */
+    @DataLogAnnotation(thing = "上传用户报名信息", peopleType = "user")
     @RequestMapping(value = "/user/uploadInformation", method = RequestMethod.POST)
     public ResponseResult uploadUserInformation(@RequestHeader Map<String, Object> headerMap, @RequestParam(value = "files") MultipartFile[] files, UserInformation userInformation, SignUp signUp) throws Exception {
         String token = (String) headerMap.get("token");
@@ -72,6 +76,7 @@ public class SignUpController {
      * @author Levi
      * @since 2022/7/30 11:10
      */
+    @DataLogAnnotation(thing = "修改用户报名信息", peopleType = "user")
     @RequestMapping(value = "/user/modifyInformation", method = RequestMethod.POST)
     public ResponseResult modifyUserInformation(@RequestHeader Map<String, Object> headerMap, @RequestParam(value = "files") MultipartFile[] files, UserInformation userInformation, SignUp signUp) throws Exception {
         String token = (String) headerMap.get("token");
@@ -85,6 +90,7 @@ public class SignUpController {
      * @author Levi
      * @since 2022/7/30 11:18
      */
+    @DataLogAnnotation(thing = "删除用户报名信息", peopleType = "user")
     @RequestMapping(value = "/user/deleteInformation", method = RequestMethod.POST)
     public ResponseResult deleteUserInformation(@RequestHeader Map<String, Object> getMap) throws Exception {
         String token = (String) getMap.get("token");
@@ -98,6 +104,7 @@ public class SignUpController {
      * @author Levi
      * @since 2022/7/30 11:22
      */
+    @DataLogAnnotation(thing = "获取报名人数", peopleType = "admin")
     @RequestMapping(value = "/admin/getPersonNumber", method = RequestMethod.POST)
     public ResponseResult adminGetPersoonNumber(@RequestHeader Map<String, Object> headerMap) throws Exception {
         String token = (String) headerMap.get("token");
@@ -108,10 +115,11 @@ public class SignUpController {
      * @param getMap:    从中获取筛选数据以及搜索数据
      * @param headerMap: 从中获取token
      * @return num：返回搜索到的报名信息的数量
-     * @description : 搜索报名信息：通过关键词以及筛选词进行报名信息搜索，返回搜索到用户信息的数量
+     * @description : 搜索报名信息的数量：通过关键词以及筛选词进行报名信息搜索，返回搜索到用户信息的数量
      * @author Levi
      * @since 2022/8/4 17:46
      */
+    @DataLogAnnotation(thing = "获取搜索报名信息的数量", peopleType = "admin")
     @RequestMapping(value = "/admin/getSearchNumber", method = RequestMethod.POST)
     public ResponseResult adminGetSearchNumber(@RequestBody Map<String, Object> getMap, @RequestHeader Map<String, Object> headerMap) throws Exception {
         String token = (String) headerMap.get("token");
@@ -126,6 +134,7 @@ public class SignUpController {
      * @author Levi
      * @since 2022/7/30 17:37
      */
+    @DataLogAnnotation(thing = "获取报名信息（分页）", peopleType = "admin")
     @RequestMapping(value = "/admin/getInformation", method = RequestMethod.POST)
     public ResponseResult adminGetInformation(@RequestBody Map<String, Object> getMap, @RequestHeader Map<String, Object> headerMap) throws Exception {
         String page = (String) getMap.get("page");
@@ -141,6 +150,7 @@ public class SignUpController {
      * @author Levi
      * @since 2022/8/4 17:46
      */
+    @DataLogAnnotation(thing = "搜索报名信息", peopleType = "admin")
     @RequestMapping(value = "/admin/searchInformation", method = RequestMethod.POST)
     public ResponseResult adminSearchInformation(@RequestBody Map<String, Object> getMap, @RequestHeader Map<String, Object> headerMap) throws Exception {
         String token = (String) headerMap.get("token");
@@ -155,6 +165,7 @@ public class SignUpController {
      * @author Levi
      * @since 2022/7/30 17:42
      */
+    @DataLogAnnotation(thing = "审核报名信息", peopleType = "admin")
     @RequestMapping(value = "/admin/examine", method = RequestMethod.POST)
     public ResponseResult adminExamine(@RequestBody SignUp signUp, @RequestHeader Map<String, Object> headerMap) throws Exception {
         String token = (String) headerMap.get("token");

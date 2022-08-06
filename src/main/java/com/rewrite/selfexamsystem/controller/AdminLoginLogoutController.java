@@ -1,6 +1,7 @@
 package com.rewrite.selfexamsystem.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.rewrite.selfexamsystem.Annotation.DataLogAnnotation;
 import com.rewrite.selfexamsystem.domain.LoginData;
 import com.rewrite.selfexamsystem.service.AdminLoginLogoutService;
 import com.rewrite.selfexamsystem.utils.KaptchaUtil;
@@ -36,6 +37,7 @@ public class AdminLoginLogoutController {
      * @author Levi
      * @since 2022/8/5 11:06
      */
+    @DataLogAnnotation(thing = "管理员登录", peopleType = "admin")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseResult AdminLogin(@RequestBody Map<String, Object> getMap, @RequestHeader Map<String, Object> headerMap) {
         JSONObject jsonObject = new JSONObject();
@@ -63,6 +65,7 @@ public class AdminLoginLogoutController {
      * @author Levi
      * @since 2022/8/5 11:19
      */
+    @DataLogAnnotation(thing = "管理员注销登录", peopleType = "admin")
     @RequestMapping(value = "/logout", method = RequestMethod.POST)
     public ResponseResult AdminLogout() {
         return adminLoginLogoutService.logout();

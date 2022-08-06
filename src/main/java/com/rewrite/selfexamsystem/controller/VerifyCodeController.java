@@ -33,7 +33,15 @@ public class VerifyCodeController {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
-    @DataLogAnnotation()
+    /**
+     * @param request:  接口请求信息
+     * @param response: 接口响应信息：将uuid放入其中
+     * @return 返回验证码图片
+     * @description : 获取验证码
+     * @author Levi
+     * @since 2022/8/6 20:03
+     */
+    @DataLogAnnotation(thing = "获取验证码", peopleType = "user")
     @RequestMapping(value = "/getVerifyCode", method = RequestMethod.GET)
     public void getVerifyCode(HttpServletRequest request, HttpServletResponse response) {
         String randomText = KaptchaUtil.getRandomText(4);
@@ -56,6 +64,15 @@ public class VerifyCodeController {
         }
     }
 
+    /**
+     * @param headerMap: 从中获取uuid
+     * @param getMap:    从中获取验证码
+     * @return 返回验证码是否验证成功信息
+     * @description : 验证码验证：通过uuid查询到对应验证码并且进行验证
+     * @author Levi
+     * @since 2022/8/6 20:04
+     */
+    @DataLogAnnotation(thing = "验证码验证", peopleType = "admin")
     @RequestMapping(value = "/checkVerifyCode", method = RequestMethod.POST)
     public ResponseResult checkVerifyCode(@RequestHeader Map<String, Object> headerMap, @RequestBody Map<String, Object> getMap) {
         JSONObject jsonObject = new JSONObject();

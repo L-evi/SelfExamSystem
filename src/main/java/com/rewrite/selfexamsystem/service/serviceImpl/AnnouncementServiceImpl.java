@@ -197,7 +197,19 @@ public class AnnouncementServiceImpl implements AnnouncementService {
      * @since 2022/7/29 18:01
      */
     @Override
-    public ResponseResult deleteAnnouncement(Announcement announcement) {
+    public ResponseResult deleteAnnouncement(Announcement announcement, String token) {
+//        鉴权
+        try {
+            JSONObject jsonObject = JSONObject.parseObject(JwtUtil.parseJwt(token).getSubject());
+            String role = (String) jsonObject.get("role");
+            if (!"admin".equals(role)) {
+                jsonObject = new JSONObject();
+                jsonObject.put("des", "权限不足无法删除公告");
+                return new ResponseResult(ResultCode.TOKEN_EXPIRATION, jsonObject);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 //        返回的信息
         JSONObject jsonObject = new JSONObject();
         if (announcementMapper.deleteAnnouncement(announcement) == 0) {

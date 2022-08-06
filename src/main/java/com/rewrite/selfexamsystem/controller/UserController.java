@@ -29,16 +29,15 @@ public class UserController {
     /**
      * @param getMap:用于存储用户数据
      * @return ResponseResult自定义响应体
+     * @description :用户注册：用户上传信息进行注册
+     * 通过@ResqestBody来接受网页中的数据，注意接受的数据一定要和User对应起来
+     * 此时produces = "application/json"，只能接受json数据，并且参数只能是一个或者用@ResponseBody注解的对象
+     * <a href="https://www.cnblogs.com/jpfss/p/10966372.html">参考链接</a>
      * @author Levi
      * @since 2022/5/7 11:34
      */
-    /*        说明接受Post的接口
-            通过@ResqestBody来接受网页中的数据，注意接受的数据一定要和User对应起来
-            此时produces = "application/json"，只能接受json数据，并且参数只能是一个或者用@ResponseBody注解的对象
-            参考链接：https://www.cnblogs.com/jpfss/p/10966372.html*/
-    @DataLogAnnotation(thing = "用户注册", peopleType = "UserInformation")
+    @DataLogAnnotation(thing = "用户注册", peopleType = "user")
     @PostMapping(value = "/register", produces = "application/json")
-    @Validated
     public ResponseResult UserRegister(@RequestBody Map<String, Object> getMap) {
 //        TODO 参数校验
 //        参数写入
@@ -55,7 +54,7 @@ public class UserController {
      * @author Levi
      * @since 2022/7/21 22:26
      */
-    @DataLogAnnotation(thing = "用户使用Token登录")
+    @DataLogAnnotation(thing = "用户使用Token登录", peopleType = "user")
     @RequestMapping(value = "/tokenLogin", method = RequestMethod.POST)
     public ResponseResult UserTokenLogin(@RequestHeader Map<String, Object> getMap) throws Exception {
         String token = (String) getMap.get("token");
@@ -69,7 +68,7 @@ public class UserController {
      * @author Levi
      * @since 2022/7/21 23:34
      */
-    @DataLogAnnotation(thing = "通过token获取个人信息", peopleType = "User")
+    @DataLogAnnotation(thing = "获取用户信息", peopleType = "user")
     @RequestMapping(value = "/personInfo", method = RequestMethod.POST)
     public ResponseResult UserGetPersonalInformation(@RequestHeader Map<String, Object> getMap) throws Exception {
         String token = (String) getMap.get("token");
@@ -84,7 +83,7 @@ public class UserController {
      * @author Levi
      * @since 2022/7/21 23:37
      */
-    @DataLogAnnotation(thing = "用户修改个人信息", peopleType = "UserInformation")
+    @DataLogAnnotation(thing = "修改个人信息", peopleType = "user")
     @RequestMapping(value = "/modifyInformation", method = RequestMethod.POST)
     public ResponseResult UserModifyInformation(@RequestBody UserInformation userInformation, @RequestHeader Map<String, Object> getMap) throws Exception {
         return userService.UserModifyInformation(userInformation, (String) getMap.get("token"));
@@ -94,16 +93,25 @@ public class UserController {
     /**
      * @param getMap: 从中获取username
      * @return 返回发送验证邮件是否成功等信息
-     * @description: 用户忘记密码接口
+     * @description: 用户忘记密码：用户通过该接口发送邮箱验证码修改密码
      * @author Levi
      * @since 2022/7/22 11:34
      */
+    @DataLogAnnotation(thing = "用户忘记密码", peopleType = "user")
     @RequestMapping(value = "/forgetPassword", method = RequestMethod.POST)
     public ResponseResult userFindPassword(@RequestBody Map<String, Object> getMap) {
         String username = (String) getMap.get("username");
         return userService.userForgetPassword(username);
     }
 
+    /**
+     * @param getMap: 从中获取username、password、emailVerify参数
+     * @return 返回修改密码是否成功等信息
+     * @description : 用户重置密码：用户通过邮箱验证码通过验证后修改密码
+     * @author Levi
+     * @since 2022/8/6 19:57
+     */
+    @DataLogAnnotation(thing = "用户重置密码", peopleType = "user")
     @RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
     public ResponseResult userResetPassword(@RequestBody Map<String, Object> getMap) {
         LoginData loginData = new LoginData((String) getMap.get("username"), (String) getMap.get("password"));

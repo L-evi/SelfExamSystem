@@ -22,7 +22,7 @@ public interface AnnouncementService {
 
     ResponseResult getAnnouncementNumber();
 
-    ResponseResult deleteAnnouncement(Announcement announcement);
+    ResponseResult deleteAnnouncement(Announcement announcement,String token);
 
     ResponseResult getAnnouncement(Announcement announcement);
 
