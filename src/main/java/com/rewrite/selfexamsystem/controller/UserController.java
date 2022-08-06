@@ -39,7 +39,6 @@ public class UserController {
     @DataLogAnnotation(thing = "用户注册", peopleType = "user")
     @PostMapping(value = "/register", produces = "application/json")
     public ResponseResult UserRegister(@RequestBody Map<String, Object> getMap) {
-//        TODO 参数校验
 //        参数写入
         LoginData loginData = new LoginData((String) getMap.get("username"), (String) getMap.get("password"));
         UserInformation userInformation = new UserInformation((String) getMap.get("username"), (String) getMap.get("tele"), (String) getMap.get("email"), (String) getMap.get("name"), Integer.parseInt((String) getMap.get("xb")), (String) getMap.get("sfzh"));

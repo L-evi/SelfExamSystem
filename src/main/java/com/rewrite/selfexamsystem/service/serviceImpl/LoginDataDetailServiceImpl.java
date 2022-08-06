@@ -49,7 +49,6 @@ public class LoginDataDetailServiceImpl implements UserDetailsService {
         if (Objects.isNull(loginData)) {
             throw new RuntimeException("用户名或密码错误");
         }
-//        TODO 根据用户权限信息，添加到LoginData中（暂时不需要添加）
 //        封装成UserDetails对象返回
         return loginData;
     }

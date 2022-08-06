@@ -65,5 +65,4 @@ public class ResponseResult<T> {
         this.status = resultCode.getStatus();
         this.data = data;
     }
-//    TODO 异常处理，参考注解：@RestfulControllerAdvice
 }

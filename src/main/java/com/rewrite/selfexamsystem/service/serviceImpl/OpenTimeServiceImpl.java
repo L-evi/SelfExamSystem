@@ -19,7 +19,7 @@ import java.util.Objects;
 /**
  * @author Levi
  * @version 3.1 (created by Spring Boot)
- * @description : TODO 将数据加入到redis中
+ * @description : open_time的Service实现类
  * @since 2022/7/22 16:57
  */
 
@@ -27,7 +27,7 @@ import java.util.Objects;
 public class OpenTimeServiceImpl implements OpenTimeService {
     @Autowired
     private OpenTimeMapper openTimeMapper;
-    
+
     @Autowired
     private RedisCache redisCache;
 
