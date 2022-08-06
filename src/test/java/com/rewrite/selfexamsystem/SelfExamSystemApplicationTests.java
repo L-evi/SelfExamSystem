@@ -477,5 +477,14 @@ class SelfExamSystemApplicationTests {
         System.out.println(userInformationMapper.getEmail("100"));
     }
 
-
+    //    测试：将JSONObject中的JSONObject数据提取出来
+    @Test
+    public void testGetJSONObject() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("status", 1);
+        JSONObject data = new JSONObject();
+        data.put("des", "问题描述");
+        jsonObject.put("data", data);
+        System.out.println(jsonObject);
+    }
 }

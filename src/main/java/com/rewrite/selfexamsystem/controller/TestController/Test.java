@@ -1,5 +1,6 @@
 package com.rewrite.selfexamsystem.controller.TestController;
 
+import com.rewrite.selfexamsystem.Annotation.DataLogAnnotation;
 import com.rewrite.selfexamsystem.Annotation.TestAnnotation;
 import com.rewrite.selfexamsystem.utils.KaptchaUtil;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -53,8 +54,10 @@ public class Test {
      * @author Levi
      * @since 2022/7/12 2:59
      */
+    @DataLogAnnotation()
     @RequestMapping("/helloaop")
-    public String SayHello() {
+    public String SayHello(@RequestBody Map<String, Object> getMap) {
+        System.out.println(getMap.toString());
         System.out.println("Hello AOP!");
         return "Hello AOP!";
     }

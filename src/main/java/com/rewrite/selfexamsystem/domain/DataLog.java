@@ -24,4 +24,6 @@ public class DataLog {
     private String type;
     //    操作是否成功：成功 / 失败
     private String status;
+    //    操作完成后具体信息
+    private String res;
 }

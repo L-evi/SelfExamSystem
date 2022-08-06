@@ -1,6 +1,7 @@
 package com.rewrite.selfexamsystem.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.rewrite.selfexamsystem.Annotation.DataLogAnnotation;
 import com.rewrite.selfexamsystem.utils.KaptchaUtil;
 import com.rewrite.selfexamsystem.utils.redis.RedisCache;
 import com.rewrite.selfexamsystem.utils.response.ResponseResult;
@@ -32,6 +33,7 @@ public class VerifyCodeController {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
+    @DataLogAnnotation()
     @RequestMapping(value = "/getVerifyCode", method = RequestMethod.GET)
     public void getVerifyCode(HttpServletRequest request, HttpServletResponse response) {
         String randomText = KaptchaUtil.getRandomText(4);
@@ -63,7 +65,8 @@ public class VerifyCodeController {
         Map<String, Object> res = KaptchaUtil.checkVerifyCode(encode, verifyCode);
         if ("fail".equals(res.get("status"))) {
             res.remove("status");
-            return new ResponseResult(ResultCode.REQUEST_TIMEOUT, res);
+            jsonObject.putAll(res);
+            return new ResponseResult(ResultCode.REQUEST_TIMEOUT, jsonObject);
         }
         res.remove("status");
         return new ResponseResult(ResultCode.SUCCESS, res);

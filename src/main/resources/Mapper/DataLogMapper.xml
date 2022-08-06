@@ -6,12 +6,12 @@
 <mapper namespace="com.rewrite.selfexamsystem.mapper.DataLogMapper">
     <!-- 添加记录到data_log中 -->
     <insert id="addDataLog" parameterType="com.rewrite.selfexamsystem.domain.DataLog">
-        insert into data_log(time, ip, username, thing, type, status)
-        VALUES (#{time}, #{ip}, #{username}, #{thing}, #{type}, #{status})
+        insert into data_log(time, ip, username, thing, type, status, res)
+        VALUES (#{time}, #{ip}, #{username}, #{thing}, #{type}, #{status}, #{res})
     </insert>
 
     <select id="getAllDataLog" resultType="com.rewrite.selfexamsystem.domain.DataLog">
-        SELECT time, ip, username, thing, type, status
+        SELECT time, ip, username, thing, type, status, res
         FROM data_log
     </select>
 </mapper>
