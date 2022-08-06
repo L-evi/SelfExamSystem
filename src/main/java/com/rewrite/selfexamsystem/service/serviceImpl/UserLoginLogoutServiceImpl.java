@@ -38,6 +38,13 @@ public class UserLoginLogoutServiceImpl implements UserLoginLogoutService {
     @Autowired
     private RedisCache redisCache;
 
+    /**
+     * @param loginData: 登录用户信息
+     * @return 返回响应体
+     * @description : 用户登录：通过Spring Security进行用户验证登录
+     * @author Levi
+     * @since 2022/8/6 22:18
+     */
     @Override
     public ResponseResult login(LoginData loginData) {
 //        调用authenticationManager中的方法authenticate进行用户认证

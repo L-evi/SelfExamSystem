@@ -11,9 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * @Author Levi
- * @Date 2022/5/7 11:43
- * @Version 3.0 (created by Spring Boot)
+ * @author Levi
+ * @version 3.0 (created by Spring Boot)
+ * @description : 管理员Service层的实现类
+ * @since 2022/5/7 11:43
  */
 @Service
 public class AdminServiceImpl implements AdminService {

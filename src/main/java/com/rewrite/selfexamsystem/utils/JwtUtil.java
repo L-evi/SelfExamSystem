@@ -91,8 +91,7 @@ public class JwtUtil {
                 .setExpiration(end);  //设置过期时间
     }
 
-    //    加密生成token
-    //    有参构造函数
+
     public static String createJwt(String subject) {
         return getJwtBuilder(subject, null, getUUID()).compact();
     }
@@ -105,7 +104,6 @@ public class JwtUtil {
         return getJwtBuilder(subject, ttl, uuid).compact();
     }
 
-    //    解析token
     public static Claims parseJwt(String token) throws Exception {
         SecretKey secretKey = getSecretKey();
         return Jwts.parser()

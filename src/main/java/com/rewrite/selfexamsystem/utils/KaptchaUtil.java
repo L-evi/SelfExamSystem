@@ -109,6 +109,14 @@ public class KaptchaUtil {
 
     private static final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
+    /**
+     * @param encode:     加密后的验证码
+     * @param verifyCode: 明文验证码
+     * @return 返回是否验证成功等信息
+     * @description : 验证验证码：通过明文验证码与加密后验证码的验证返回是否成功等信息
+     * @author Levi
+     * @since 2022/8/6 22:25
+     */
     public static Map<String, Object> checkVerifyCode(String encode, String verifyCode) {
         Map<String, Object> res = new HashMap<>();
         if (encode == null || encode.isEmpty() || "".equals(encode)) {

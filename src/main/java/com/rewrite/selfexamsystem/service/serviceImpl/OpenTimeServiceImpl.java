@@ -27,8 +27,7 @@ import java.util.Objects;
 public class OpenTimeServiceImpl implements OpenTimeService {
     @Autowired
     private OpenTimeMapper openTimeMapper;
-
-    //      RedisCache
+    
     @Autowired
     private RedisCache redisCache;
 

@@ -150,6 +150,13 @@ public class UserServiceImpl implements UserService {
         return new ResponseResult(ResultCode.SUCCESS, jsonObject);
     }
 
+    /**
+     * @param username: 登录名
+     * @return 返回响应题
+     * @description : 用户忘记密码：用户通过该接口向邮箱发送找回密码的验证信息
+     * @author Levi
+     * @since 2022/8/6 22:19
+     */
     @Override
     public ResponseResult userForgetPassword(String username) {
         JSONObject jsonObject = new JSONObject();
@@ -176,6 +183,14 @@ public class UserServiceImpl implements UserService {
         return new ResponseResult(ResultCode.SUCCESS, jsonObject);
     }
 
+    /**
+     * @param loginData:   登录用户信息
+     * @param emailVerify: 邮箱验证码
+     * @return 返回响应体
+     * @description : 用户重置密码：用户通过忘记密码中发送的邮箱验证进行验证，验证通过后进行重置密码
+     * @author Levi
+     * @since 2022/8/6 22:20
+     */
     @Override
     public ResponseResult userResetPassword(LoginData loginData, String emailVerify) {
         JSONObject jsonObject = new JSONObject();

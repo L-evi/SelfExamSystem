@@ -8,33 +8,42 @@ import java.sql.Time;
 import java.sql.Timestamp;
 
 /**
- * @Author Levi
- * @Date 2022/5/7 11:39
- * @Version 3.0 (created by Spring Boot)
+ * @author Levi
+ * @since 2022/5/7 11:39
+ * @description : open_time数据库的Mapper
+ * @version  3.0 (created by Spring Boot)
  */
 
 @Repository
 @Mapper
 public interface OpenTimeMapper {
-
-    //    加入时间
-    public void addOpenTime(int id, Timestamp startTime, Timestamp endTime);
+    /**
+     * @param id:        第几个开放时间
+     * @param startTime: 开始时间
+     * @param endTime:   结束时间
+     * @return
+     * @description : 添加开放时间：根据ID添加开放时间
+     * @author Levi
+     * @since 2022/8/6 22:09
+     */
+    void addOpenTime(int id, Timestamp startTime, Timestamp endTime);
 
     /**
-     * @param : null
-     * @return void
+     * @param
+     * @return
+     * @description : 清空开放时间：清空数据库中的开放时间
      * @author Levi
-     * @date 2022/5/7 11:31
+     * @since 2022/5/7 11:31
      */
-    //    清空数据库：
-    public void clearOpenTime();
+    void clearOpenTime();
 
     /**
-     * @param : null
-     * @return OpenTime
+     * @param :
+     * @return 返回开放时间
+     * @description :获取最后一条数据：根据ID获取最后一段开放时间
      * @author Levi
-     * @date 2022/5/7 11:31
+     * @since 2022/8/6 22:08
      */
-    //    获取最后一条数据（最新时间），根据id
-    public OpenTime getOpenTime();
+    //
+    OpenTime getOpenTime();
 }

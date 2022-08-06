@@ -15,9 +15,22 @@ import java.util.List;
 @Repository
 @Mapper
 public interface DataLogMapper {
-    //    添加日志
+
+    /**
+     * @param dataLog: 日志实体类
+     * @return
+     * @description : 添加日志：添加日志到数据库中
+     * @author Levi
+     * @since 2022/8/6 22:04
+     */
     void addDataLog(DataLog dataLog);
 
-    //    获取所有操作记录
+    /**
+     * @param :
+     * @return 以列表形式返回日志实体类
+     * @description : 查询所有日志：查询数据库中所有日志并返回List
+     * @author Levi
+     * @since 2022/8/6 22:05
+     */
     List<DataLog> getAllDataLog();
 }

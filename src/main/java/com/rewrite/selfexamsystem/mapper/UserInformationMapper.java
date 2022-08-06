@@ -8,14 +8,12 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * @Author Levi
- * @Date 2022/5/7 11:40
- * @Version 3.0 (created by Spring Boot)
+ * @author Levi
+ * @since 2022/5/7 11:40
+ * @version  3.0 (created by Spring Boot)
  */
 
-//加入bean管理，能够自动装配
 @Repository
-//加入Mapper数据库SQL映射才能被容器识别
 @Mapper
 public interface UserInformationMapper {
     /**

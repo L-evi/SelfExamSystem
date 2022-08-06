@@ -32,10 +32,25 @@ public class Loggr {
     @Autowired
     private DataLogMapper dataLogMapper;
 
+    /**
+     * @param :
+     * @return
+     * @description : 用于日志记录的切点函数
+     * @author Levi
+     * @since 2022/8/6 21:48
+     */
     @Pointcut(value = "@annotation(com.rewrite.selfexamsystem.Annotation.DataLogAnnotation)")
     public void UserPointcut() {
     }
 
+    /**
+     * @param proceedingJoinPoint: 环绕通知独有的变量
+     * @param dataLogAnnotation:   自定义的用于标记日志的注解
+     * @return Object：一般为函数运行proceed()的返回值
+     * @description : 用于日志记录的切面类
+     * @author Levi
+     * @since 2022/8/6 21:47
+     */
     @Around("UserPointcut() && @annotation(dataLogAnnotation)")
     public Object loggerAround(ProceedingJoinPoint proceedingJoinPoint, DataLogAnnotation dataLogAnnotation) throws Throwable {
         Object result = proceedingJoinPoint.proceed();

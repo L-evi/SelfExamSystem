@@ -11,22 +11,31 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 
 /**
- * @Author Levi
- * @Date 2022/5/7 11:40
- * @Version 3.0 (created by Spring Boot)
+ * @author Levi
+ * @version 3.0 (created by Spring Boot)
+ * @description :用于admin_data数据库的实体类
+ * @since 2022/5/7 11:40
  */
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Admin {
-    //    登录账号
+    /**
+     * 登录账号
+     */
     private String username;
-    //    登陆密码
+    /**
+     * 登陆密码
+     */
     private String password;
-    //    权限
+    /**
+     * 权限
+     */
     private int permisson;
-    //    note
+    /**
+     * note
+     */
     private String note;
 
 }

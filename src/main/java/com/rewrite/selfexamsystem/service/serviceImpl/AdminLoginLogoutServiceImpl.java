@@ -35,6 +35,13 @@ public class AdminLoginLogoutServiceImpl implements AdminLoginLogoutService {
     @Autowired
     private AdminMapper adminMapper;
 
+    /**
+     * @param loginData: 登录用户信息
+     * @return 返回响应体
+     * @description : 管理员登录：通过Spring Security查询数据库进行管理员验证登录
+     * @author Levi
+     * @since 2022/8/6 22:12
+     */
     @Override
     public ResponseResult login(LoginData loginData) {
         Object Username = loginData.getUsername();

@@ -21,7 +21,6 @@ import java.util.Objects;
 
 @Service
 public class LoginDataDetailServiceImpl implements UserDetailsService {
-    //    使用userDataMapper查询用户账号密码
     @Autowired
     private LoginDataMapper loginDataMapper;
 

@@ -36,12 +36,17 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     @Autowired
     private RedisCache redisCache;
 
+
     /**
-     * @param request
-     * @param response
-     * @param filterChain
-     * @throws ServletException
-     * @throws IOException
+     * @param request:     互联网请求
+     * @param response:    互联网响应
+     * @param filterChain: 过滤器
+     * @return
+     * @throws ServletException 网络异常
+     * @throws IOException      IO异常
+     * @description : JWT的验证过滤器
+     * @author Levi
+     * @since 2022/8/6 21:59
      */
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -65,10 +70,8 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             throw new RuntimeException("token非法");
         }
 //        根据不同status采取不同的验证策略
-        if (role.equals("user")) {
+        if ("user".equals(role)) {
             //        从数据库中取出指定用户信息
-//        LoginData userData = userDataMapper.selectUserDataByUsername(username);
-//        LoginData loginData = new LoginData(userData);
 //        如果用的是redis，这里还要看redis中取出的用户数据是不是空，如果是空则说明用户未登录
             LoginData loginData = redisCache.getCacheObject("user_data:" + username);
             if (Objects.isNull(loginData)) {
@@ -77,7 +80,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             //        存入到SecurityContextHolder：第一个用户主体，第二个用户密码，可以null，第三个权限信息，稍后补充
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(loginData, null, null);
             SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-        } else if (role.equals("admin")) {
+        } else if ("admin".equals(role)) {
             Admin admin = redisCache.getCacheObject("admin:" + username);
             if (Objects.isNull(admin)) {
                 throw new RuntimeException("admin用户未登录");

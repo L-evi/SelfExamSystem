@@ -22,7 +22,7 @@ import javax.mail.internet.MimeMessage;
 @NoArgsConstructor
 public class MailUtil {
     /**
-     * 发送人 TODO @Value注解的使用
+     * 发送人
      */
     private String sender;
 

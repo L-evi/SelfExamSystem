@@ -21,12 +21,15 @@ import java.io.IOException;
 @Component
 public class AccessDeniedHandler implements org.springframework.security.web.access.AccessDeniedHandler {
 
+
     /**
-     * @param request
-     * @param response
-     * @param accessDeniedException
-     * @throws IOException
-     * @throws ServletException
+     * @param request:               互联网请求
+     * @param response:              互联网响应
+     * @param accessDeniedException: 访问拒绝错误
+     * @return
+     * @description : 登陆验证不通过后返回到前端的提示信息
+     * @author Levi
+     * @since 2022/8/6 22:00
      */
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {

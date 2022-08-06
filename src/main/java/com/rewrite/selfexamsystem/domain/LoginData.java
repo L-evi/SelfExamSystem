@@ -14,7 +14,6 @@ import java.util.Collection;
  * @since: 2022/7/19 22:04
  * @version: 3.1（Created By Spring Boot）
  */
-//使用注解setter、getter、toString等方法以及有参、无参构造方法全部补全
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

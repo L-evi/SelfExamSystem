@@ -25,10 +25,16 @@ import java.util.Map;
  */
 @Service
 public class DataLogServiceImpl implements DataLogService {
-    //    数据库管理
     @Autowired
     private DataLogMapper dataLogMapper;
 
+    /**
+     * @param token: 用于鉴权
+     * @return 返回响应体
+     * @description : 获取所有日志：管理员获取所有日志数据并返回
+     * @author Levi
+     * @since 2022/8/6 22:16
+     */
     @Override
     public ResponseResult ShowLog(String token) throws Exception {
 //        解析token，获取其中的权限信息

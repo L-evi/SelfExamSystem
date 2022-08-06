@@ -12,5 +12,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Mapper
 public interface AdminMapper {
+    /**
+     * @param username: 用户名
+     * @return 返回管理员Admin
+     * @description : 通过用户名查询管理员：通过用户名查询管理员信息并返回
+     * @author Levi
+     * @since 2022/8/6 22:03
+     */
     Admin selectByAdminUsername(String username);
 }

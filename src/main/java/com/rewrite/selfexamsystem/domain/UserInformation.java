@@ -21,17 +21,28 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 // 用户的实体对象，每一个变量对应着数据库中的列属性（对应数据库user_information）
 public class UserInformation {
-    //    用户名（准考证号）
+    /**
+     * 用户名（准考证号）
+     */
     private String username;
-    //    TODO 参数校验NotNull
-    //    电话
+    /**
+     * 电话
+     */
     private String tele;
-    //    邮箱
+    /**
+     * 邮箱
+     */
     private String email;
-    //    姓名
+    /**
+     * 姓名
+     */
     private String name;
-    //    性别
+    /**
+     * 性别
+     */
     private int xb;
-    //    身份证号
+    /**
+     * 身份证号
+     */
     private String sfzh;
 }

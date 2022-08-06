@@ -54,6 +54,12 @@ public interface CourseCodeMapper {
      */
     List<Course> selectAllCourse();
 
-    //    查询某一个课程：根据code
+    /**
+     * @param code: 课程代码
+     * @return
+     * @description : 查询课程信息：根据课程代码查询课程详细信息并返回
+     * @author Levi
+     * @since 2022/8/6 22:04
+     */
     Course selectCourseByCode(String code);
 }
