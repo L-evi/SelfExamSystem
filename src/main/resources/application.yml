@@ -3,9 +3,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: 数据库登录名
-    password: 数据库登录密码
-    url: jdbc:mysql://服务器名：端口号/服数据库名?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&allowMultiQueries=true
+    username: root
+    password: Lwt20011121
+    url: jdbc:mysql://112.74.125.172:33066/course?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC&allowMultiQueries=true
   # 初始化dispatcherServlet，默认-1未开启，0及以上为开启
   mvc:
     servlet:
@@ -15,9 +15,9 @@ spring:
     auto: true
   # Spring Mail的配置
   mail:
-    host: smtp.qq.com（根据邮箱服务器填写）
-    username: 请填入你的邮箱账号
-    password: 请填入你的授权码
+    host: smtp.qq.com
+    username: 3573897471@qq.com
+    password: nhfgxvxltgalcjje
     properties:
       mail:
         smtp:
@@ -30,9 +30,9 @@ spring:
     port: 465
   servlet:
     multipart:
-      #      单个文件大小
+#      单个文件大小
       max-file-size: 10MB
-      #      全部文件大小
+#      全部文件大小
       max-request-size: 100MB
 # 修改网页端口
 server:

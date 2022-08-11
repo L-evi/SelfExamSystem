@@ -5,10 +5,7 @@ import com.rewrite.selfexamsystem.domain.Course;
 import com.rewrite.selfexamsystem.service.serviceImpl.CourseCodeServiceImpl;
 import com.rewrite.selfexamsystem.utils.response.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -19,6 +16,7 @@ import java.util.Map;
  * @since 2022/5/7 16:11
  */
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/courseCode")
 public class CourseCodeController {
     @Autowired
