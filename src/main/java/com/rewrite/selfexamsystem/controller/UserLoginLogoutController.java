@@ -21,6 +21,7 @@ import java.util.Map;
  * @version: 3.1（Created By Spring Boot）
  */
 @RestController
+@CrossOrigin
 public class UserLoginLogoutController {
     @Autowired
     private UserLoginLogoutService userLoginLogoutService;

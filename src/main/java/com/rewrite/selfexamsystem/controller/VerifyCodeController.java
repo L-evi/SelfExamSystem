@@ -27,6 +27,7 @@ import java.util.concurrent.TimeUnit;
  * @since 2022/8/4 22:33
  */
 @RestController
+@CrossOrigin
 public class VerifyCodeController {
     @Autowired
     private RedisCache redisCache;
