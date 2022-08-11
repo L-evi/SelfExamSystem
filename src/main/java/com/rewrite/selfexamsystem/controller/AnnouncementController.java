@@ -20,7 +20,6 @@ import java.util.Map;
  */
 
 @RestController
-@CrossOrigin
 @RequestMapping(value = "/announcement")
 public class AnnouncementController {
     @Autowired

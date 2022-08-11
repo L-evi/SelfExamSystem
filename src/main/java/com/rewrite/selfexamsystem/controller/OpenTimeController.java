@@ -23,7 +23,6 @@ import java.util.Map;
  * @since 2022/5/7 15:47
  */
 @RestController
-@CrossOrigin
 @RequestMapping(value = "/openTime")
 public class OpenTimeController {
     @Autowired

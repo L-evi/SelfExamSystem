@@ -5,7 +5,10 @@ import com.rewrite.selfexamsystem.Annotation.DataLogAnnotation;
 import com.rewrite.selfexamsystem.service.serviceImpl.AdminServiceImpl;
 import com.rewrite.selfexamsystem.utils.response.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
@@ -16,7 +19,6 @@ import java.util.Map;
  * @since 2022/5/7 11:34
  */
 @RestController
-@CrossOrigin
 public class AdminController {
     @Autowired
     private AdminServiceImpl adminloginserviceimpl;

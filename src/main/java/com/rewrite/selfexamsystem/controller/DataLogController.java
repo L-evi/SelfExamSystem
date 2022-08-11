@@ -4,7 +4,10 @@ import com.rewrite.selfexamsystem.Annotation.DataLogAnnotation;
 import com.rewrite.selfexamsystem.service.DataLogService;
 import com.rewrite.selfexamsystem.utils.response.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.xml.ws.Response;
 import java.lang.management.ThreadInfo;
@@ -18,7 +21,6 @@ import java.util.Map;
  */
 
 @RestController
-@CrossOrigin
 @RequestMapping(value = "/dataLog")
 public class DataLogController {
     @Autowired

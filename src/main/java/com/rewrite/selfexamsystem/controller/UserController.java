@@ -20,7 +20,6 @@ import java.util.Map;
  */
 //采用Restful风格接受传输数据
 @RestController
-@CrossOrigin
 @RequestMapping(value = "/user")
 public class UserController {
     //    此处的类一定要

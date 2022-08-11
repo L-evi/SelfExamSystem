@@ -21,7 +21,6 @@ import java.util.Map;
  * @version: 3.1（Created By Spring Boot）
  */
 @RestController
-@CrossOrigin
 @RequestMapping(value = "/admin")
 public class AdminLoginLogoutController {
     @Autowired

@@ -18,7 +18,6 @@ import java.util.Map;
  * @since 2022/7/29 23:13
  */
 @RestController
-@CrossOrigin
 @RequestMapping(value = "signUp")
 public class SignUpController {
     @Autowired
